@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CyberShield INDIA</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at top left, rgba(30,58,138,0.25), transparent 40%),
+                  radial-gradient(circle at bottom right, rgba(255,153,51,0.18), transparent 35%),
+                  radial-gradient(circle at center, rgba(59,130,246,0.12), transparent 45%);
+      animation: backgroundMove 12s infinite alternate ease-in-out;
+      z-index: -1;
+    }
+
+    @keyframes backgroundMove {
+      0% {
+        transform: scale(1) translateY(0px);
+      }
+      100% {
+        transform: scale(1.08) translateY(-10px);
+      }
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f4f7fb;
+      color: #1f2937;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0f172a, #1e3a8a);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    nav {
+      background: #111827;
+      padding: 12px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 18px;
+      font-weight: bold;
+    }
+
+    section {
+      padding: 50px 10%;
+    }
+
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      margin-top: 25px;
+    }
+
+    h2 {
+      color: #1e3a8a;
+      margin-bottom: 15px;
+    }
+
+    textarea, input {
+      display: none;
+    }
+
+    textarea,
+    input,
+    select {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      background: white;
+      color: #111827;
+      font-size: 1rem;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      background: #1e3a8a;
+      color: white;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #0f172a;
+    }
+
+    .result {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    .quiz-question {
+      margin-bottom: 20px;
+    }
+
+    .ethics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .ethics-box {
+      background: #dbeafe;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .helpline-list li {
+      margin-bottom: 12px;
+    }
+
+    .top-toolbar {
+      background: #e5e7eb;
+      padding: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .top-toolbar button {
+      margin-top: 0;
+      padding: 8px 14px;
+      font-size: 0.9rem;
+    }
+
+    .color-tools button {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 1px solid #fff;
+      cursor: pointer;
+    }
+
+    .gov-marquee {
+      overflow: hidden;
+      background: white;
+      padding: 20px 0;
+      border-top: 1px solid #ddd;
+    }
+
+    .gov-track {
+      display: flex;
+      width: max-content;
+      animation: marqueeMove 18s linear infinite;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .gov-track img {
+      width: 70px;
+      height: 70px;
+      object-fit: contain;
+    }
+
+    @keyframes marqueeMove {
+      from {
+        transform: translateX(100%);
+      }
+      to {
+        transform: translateX(-100%);
+      }
+    }
+    footer {  background: #111827;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 30px;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .stat-box {
+      background: rgba(255,255,255,0.1);
+      padding: 20px;
+      border-radius: 12px;
+    }
+
+    .stat-box h3 {
+      font-size: 2rem;
+    }
+
+    .partner-section-title {
+      text-align: center;
+      padding: 35px 20px 25px;
+      background: linear-gradient(
+        135deg,
+        rgba(15, 23, 42, 0.95),
+        rgba(30, 58, 138, 0.95),
+        rgba(12, 74, 110, 0.95)
+      );
+      color: white;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .partner-section-title h2 {
+      font-size: 2rem;
+      margin-bottom: 12px;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+
+    .partner-section-title p {
+      max-width: 900px;
+      margin: auto;
+      line-height: 1.8;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .dark-mode {
+      background: #0f172a !important;
+      color: #f9fafb !important;
+    }
+
+    .dark-mode .card,
+    .dark-mode .ethics-box {
+      background: #1e293b;
+      color: white;
+    }
+
+    .dark-mode nav,
+    .dark-mode footer {
+      background: #020617;
+    }
+
+    .dark-mode h2,
+    .dark-mode h3,
+    .dark-mode p,
+    .dark-mode li,
+    .dark-mode a {
+      color: #f9fafb;
+    }
+    
+    #media-gallery { position: relative; }
+
+    .media-slider-container { position: relative;
+      width: 100%;  overflow: hidden;  border-radius: 18px; }
+
+    .media-slider img { width: 100%; height: 500px;
+      object-fit: contain; border-radius: 18px;
+      background: #0f172a;
+    }
+
+    .slider-btn { position: absolute; top: 50%;
+      transform: translateY(-50%);
+      background: rgba(15, 23, 42, 0.75);
+      color: white; border: none;  padding: 16px 18px;
+      font-size: 1.5rem; cursor: pointer; z-index: 10;
+      border-radius: 50%; transition: 0.3s ease; }
+
+    .slider-btn:hover { background: rgba(30, 58, 138, 0.95); }
+
+    .left-btn { left: 15px; }
+
+    .right-btn { right: 15px; }
+
+    .media-caption {
+      margin-top: 18px;
+      text-align: center; font-size: 1rem;
+      color: #475569; line-height: 1.7; }
+
+    @media (max-width: 768px) {
+      .media-slider img { height: 280px; }
+
+      .slider-btn { padding: 12px 14px; font-size: 1.1rem; }
+    }
+
+    .chat-container {
+  margin-top: 20px;
+}
+
+.chat-messages {
+  height: 320px;
+  overflow-y: auto;
+  background: #f8fafc;
+  padding: 18px;
+  border-radius: 12px;
+  border: 1px solid #cbd5e1;
+}
+
+.user-message,
+.bot-message {
+  padding: 12px 15px;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  max-width: 80%;
+  line-height: 1.6;
+}
+
+.user-message {
+  background: #1e3a8a;
+  color: white;
+  margin-left: auto;
+}
+
+.bot-message {
+  background: #dbeafe;
+  color: #111827;
+}
+
+.chat-input-area {
+  display: flex;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.chat-input-area input {
+  flex: 1;
+}
+
+.floating-chatbot {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 360px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.18);
+  overflow: hidden;
+  z-index: 9999;
+  animation: fadeInChat 0.4s ease;
+}
+
+@keyframes fadeInChat {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.chat-header {
+  background: linear-gradient(135deg, #0f172a, #1e3a8a);
+  color: white;
+  padding: 14px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+}
+
+.chat-controls button {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  margin-left: 8px;
+  cursor: pointer;
+}
+
+.chat-body {
+  background: white;
+}
+
+.chat-messages {
+  height: 300px;
+  overflow-y: auto;
+  padding: 16px;
+  background: #f8fafc;
+}
+
+.chat-input-area {
+  display: flex;
+  gap: 10px;
+  padding: 14px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.chat-input-area input {
+  flex: 1;
+}
+
+.chat-open-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(135deg, #0f172a, #1e3a8a);
+  color: white;
+  font-size: 1.6rem;
+  cursor: pointer;
+  display: none;
+  z-index: 9999;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+}
+
+@media (max-width: 768px) {
+  .floating-chatbot {
+    width: 95%;
+    right: 2.5%;
+    bottom: 10px;
+  }
+}
+
+.visitor-counter {
+  text-align: center;
+  padding: 18px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  background: linear-gradient(135deg, #0f172a, #1e3a8a);
+  color: white;
+}
+
+.cursor-bubble {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  background: rgba(59,130,246,0.35);
+  border: 2px solid rgba(255,255,255,0.8);
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  transition: transform 0.08s linear;
+  backdrop-filter: blur(3px);
+}
+
+  </style>
+</head>
+<body>
+
+<div class="cursor-bubble"></div>
+
+<div id="welcomeScreen" style="background: linear-gradient(135deg, #0b1f3a, #123c7a); color: white; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 40px;">
+  <img src="https://img.icons8.com/color/160/cyber-security.png" alt="CyberShield Logo" style="width:120px; margin-bottom:20px;">
+
+  <h1 style="font-size:3.5rem; margin-bottom:20px;">CyberShield INDIA</h1>
+
+  <p style="max-width:900px; font-size:1.2rem; line-height:1.8;">
+    CyberShield INDIA is a student-focused cyber awareness and ethical digital safety platform inspired by Indian Knowledge Systems.
+    This initiative aims to reduce cyberbullying among Indian youth through awareness, responsible technology usage,
+    mental health support, reporting systems, and ethical digital communication.
+  </p>
+
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:25px; margin-top:40px; width:100%; max-width:1100px;">
+    <div style="background:rgba(255,255,255,0.1); padding:25px; border-radius:18px; backdrop-filter:blur(8px);">
+      <img src="https://img.icons8.com/color/96/forest.png" style="width:70px;">
+      <h3 style="margin:15px 0;">Social Environment</h3>
+      <p>Promotes healthy online communication and respectful social interaction among students.</p>
+    </div>
+
+    <div style="background:rgba(255,255,255,0.1); padding:25px; border-radius:18px; backdrop-filter:blur(8px);">
+      <img src="https://img.icons8.com/color/96/economic-improvement.png" style="width:70px;">
+      <h3 style="margin:15px 0;">Economic Awareness</h3>
+      <p>Cyber safety awareness reduces financial fraud risks and promotes responsible digital participation.</p>
+    </div>
+
+    <div style="background:rgba(255,255,255,0.1); padding:25px; border-radius:18px; backdrop-filter:blur(8px);">
+      <img src="https://img.icons8.com/color/96/student-center.png" style="width:70px;">
+      <h3 style="margin:15px 0;">Student Protection</h3>
+      <p>Supports student mental health, online dignity, and ethical internet behavior.</p>
+    </div>
+  </div>
+
+  <button onclick="enterPortal()" style="margin-top:40px; padding:16px 35px; font-size:1.1rem; border:none; border-radius:10px; background:#ff9933; color:white; cursor:pointer; font-weight:bold;">
+    Enter CyberShield Portal
+  </button>
+</div>
+
+<div id="mainPortal" style="display:none;">
+
+<header>
+  <h1>CyberShield INDIA</h1>
+  <p>
+    A web-based awareness and support platform designed to promote ethical digital behavior,
+    cyberbullying awareness, and student safety through Indian Knowledge Systems values.
+  </p>
+
+  <div class="hero-stats">
+    <div class="stat-box">
+      <h3>72%</h3>
+      <p>Students active on social media daily</p>
+    </div>
+
+    <div class="stat-box">
+      <h3>41%</h3>
+      <p>Reported experiencing online harassment</p>
+    </div>
+
+    <div class="stat-box">
+      <h3>24/7</h3>
+      <p>Digital safety awareness initiative</p>
+    </div>
+  </div>
+</header>
+
+<div class="accessibility-panel">
+
+  <button class="menu-toggle" onclick="toggleAccessMenu()">  ☰  </button>
+
+  <div class="access-menu" id="accessMenu">
+
+    <button onclick="toggleTheme()">🌙/☀ Toggle Mode</button>
+    <button onclick="changeFontSize(1)">A+ Increase Font</button>
+    <button onclick="changeFontSize(-1)">A- Decrease Font</button>
+    <button onclick="playReader()">▶ Read Page</button>
+    <button onclick="pauseReader()">⏸ Pause Reading</button>
+
+    <div class="color-tools"><p>Font Colors</p>
+
+      <button style="background:violet"
+      onclick="changeFontColor('violet')"></button>
+
+      <button style="background:indigo"
+      onclick="changeFontColor('indigo')"></button>
+
+      <button style="background:blue"
+      onclick="changeFontColor('blue')"></button>
+
+      <button style="background:green"
+      onclick="changeFontColor('green')"></button>
+
+      <button style="background:#c9a000"
+      onclick="changeFontColor('#c9a000')"></button>
+
+      <button style="background:orange"
+      onclick="changeFontColor('orange')"></button>
+
+      <button style="background:red"
+      onclick="changeFontColor('red')"></button>
+</div></div></div>
+
+<nav>
+  <a href="#detector">Detection Simulator</a>
+  <a href="#report">Reporting Portal</a>
+  <a href="#quiz">Awareness Quiz</a>
+  <a href="#iks">IKS Ethics</a>
+  <a href="#dashboard">Statistics</a>
+  <a href="#help">Helplines</a>
+  <a href="#support">Support & Enquiry</a>
+  <a href="#faq">FAQ</a>
+</nav>
+
+<section id="media-gallery">
+  <h2>Awareness Media Gallery</h2>
+
+  <div class="card">
+    <p style="margin-bottom:20px;">
+      Educational media and awareness visuals related to cyber safety,
+      responsible social media usage, and digital ethics.
+    </p>
+
+    <div class="media-slider-container">
+
+      <button class="slider-btn left-btn" onclick="prevSlide()">&#10094;</button>
+
+      <div class="media-slider">
+        <img id="sliderImage"
+          src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop"
+          alt="Cyber Awareness">
+      </div>
+
+      <button class="slider-btn right-btn" onclick="nextSlide()">&#10095;</button>
+
+    </div>
+
+    <div class="media-caption" id="mediaCaption">
+      Students learning responsible digital communication practices.
+    </div>
+
+  </div>
+</section>
+
+<section id="detector">
+  <h2>Cyberbullying Detection Simulator</h2>
+
+  <div class="card">
+    <p>Enter a suspicious or harmful message to analyze its toxicity level.</p>
+
+    <textarea id="messageInput" rows="5" placeholder="Type a message..."></textarea>
+
+    <button onclick="toggleDetectorInput()">Open Detection Input</button>
+    <button onclick="analyzeMessage()">Analyze Message</button>
+
+    <div class="result" id="analysisResult"></div>
+  </div>
+</section>
+
+<section id="report">
+  <h2>Anonymous Reporting Portal</h2>
+
+  <div class="card">
+    <p>Report cyberbullying incidents safely through the official CyberShield INDIA reporting form.</p>
+    <p>Your responses can remain anonymous and are used only for awareness and educational purposes.</p>
+
+    <a href="https://forms.gle/WvqzVBs6CQEMh5h57" target="_blank">
+
+    <button>Open Reporting Form</button>
+</a></div></section>
+
+<section id="quiz">
+  <h2>Cyber Safety Awareness Quiz</h2>
+
+  <div class="card">
+    <div class="quiz-question">
+      <p><strong>1. What should you do if you experience cyberbullying?</strong></p>
+      <select id="q1">
+        <option value="">Choose an answer</option>
+        <option value="wrong">Ignore permanently</option>
+        <option value="correct">Report and seek help</option>
+        <option value="wrong">Spread it further</option>
+      </select>
+    </div>
+
+    <div class="quiz-question">
+      <p><strong>2. Which Indian value promotes non-violence?</strong></p>
+      <select id="q2">
+        <option value="">Choose an answer</option>
+        <option value="wrong">Krodha</option>
+        <option value="correct">Ahimsa</option>
+        <option value="wrong">Moha</option>
+      </select>
+    </div>
+
+    <div class="quiz-question">
+      <p><strong>3. Which action is considered cyberbullying?</strong></p>
+      <select id="q3">
+        <option value="">Choose an answer</option>
+        <option value="correct">Sharing humiliating memes</option>
+        <option value="wrong">Sending study materials</option>
+        <option value="wrong">Attending online classes</option>
+      </select>
+    </div>
+
+    <button onclick="calculateQuiz()">Submit Quiz</button>
+
+    <div class="result" id="quizResult"></div>
+  </div>
+</section>
+
+<section id="iks">
+  <h2>Indian Knowledge Systems Ethics Section</h2>
+
+  <div class="ethics-grid">
+    <div class="ethics-box">
+      <h3>Ahimsa</h3>
+      <p>Practice non-violence in online communication.</p>
+    </div>
+
+    <div class="ethics-box">
+      <h3>Dharma</h3>
+      <p>Maintain ethical responsibility in digital spaces.</p>
+    </div>
+
+    <div class="ethics-box">
+      <h3>Karuna</h3>
+      <p>Show compassion and empathy towards others.</p>
+    </div>
+
+    <div class="ethics-box">
+      <h3>Satya</h3>
+      <p>Promote truthfulness and honesty online.</p>
+    </div>
+  </div>
+</section>
+
+<div class="card">
+  <h3 style="margin-bottom:15px;">Cyberbullying Trends in India (2021 - 2026)</h3>
+
+  <p style="line-height:1.9;">
+    Over the past five years, India has witnessed a significant rise in social media usage
+    among adolescents and young adults. Alongside increased digital engagement,
+    reports related to online harassment, meme abuse, identity trolling,
+    and anonymous bullying have also increased.
+  </p>
+
+  <br>
+
+  <p style="line-height:1.9;">
+    Between 2021 and 2023, educational institutions observed rapid growth in online interactions
+    after hybrid learning expansion. By 2024–2026, awareness initiatives,
+    cyber safety workshops, and government digital literacy campaigns helped improve
+    reporting systems and student awareness across schools and colleges.
+  </p>
+
+  <br>
+
+  <p style="line-height:1.9;">
+    Current awareness programs now focus on ethical communication,
+    mental health protection, and responsible social media behavior inspired by
+    Indian Knowledge Systems principles such as Ahimsa, Dharma, and Satya.
+  </p>
+</div>
+
+<section id="dashboard">
+  <h2>Live Statistics Dashboard</h2>
+
+  <div class="card">
+    <canvas id="statsChart"></canvas>
+  </div>
+
+  <div class="card" style="margin-top:25px;">
+  <h3 style="margin-bottom:15px;">Year-wise Highlights</h3>
+
+  <ul style="line-height:2;">
+    <li><strong>2021:</strong> Rise in online class-related harassment cases.</li>
+    <li><strong>2022:</strong> Increased meme abuse and anonymous trolling incidents.</li>
+    <li><strong>2023:</strong> Colleges adopted awareness seminars and cyber safety clubs.</li>
+    <li><strong>2024:</strong> Government cyber awareness campaigns expanded nationwide.</li>
+    <li><strong>2025:</strong> Improved anonymous reporting and student counselling support.</li>
+    <li><strong>2026:</strong> Ethical digital citizenship initiatives integrated with IKS values.</li>
+  </ul></div>
+</section>
+
+<section id="help">
+  <h2>Cyber Safety Helplines</h2>
+
+  <div class="card">
+    <ul class="helpline-list">
+      <li><strong>National Cyber Crime Helpline:</strong> 1930</li>
+      <li><strong>Women Helpline:</strong> 181</li>
+      <li><strong>Childline India:</strong> 1098</li>
+      <li><strong>Mental Health Helpline (Kiran):</strong> 1800-599-0019</li>
+    </ul>
+
+    <p>
+      Report cybercrime officially through the Indian government portal:
+      <br><br>
+      <a href="https://cybercrime.gov.in" target="_blank">https://cybercrime.gov.in</a>
+    </p>
+  </div>
+</section>
+
+<section id="support">
+  <h2>Support & Enquiry</h2>
+
+  <div class="card">
+    <h3>Email Support</h3>
+    <p>support@cybershieldindia.org</p>
+
+    <h3 style="margin-top:20px;">Contact Number</h3>
+    <p>+91 1800-123-2026</p>
+
+    <h3 style="margin-top:20px;">Enquiry Form</h3>
+    <textarea id="enquiryBox" rows="4" style="display:block;" placeholder="Enter your enquiry..."></textarea>
+    <button onclick="submitEnquiry()">Submit Enquiry</button>
+
+    <div id="enquiryResult" class="result"></div>
+  </div>
+</section>
+
+<section id="faq">
+  <h2>Frequently Asked Questions</h2>
+
+  <div class="card">
+    <h3>What is cyberbullying?</h3>
+    <p>Cyberbullying is online harassment using digital platforms.</p>
+
+    <h3 style="margin-top:20px;">How can I report abuse?</h3>
+    <p>You can report incidents anonymously using the reporting portal.</p>
+
+    <h3 style="margin-top:20px;">Is my report confidential?</h3>
+    <p>Yes, all reports are treated anonymously for awareness purposes.</p>
+
+    <h3 style="margin-top:20px;">Can cyberbullying affect mental health?</h3>
+    <p>Yes. Continuous online harassment may lead to stress, anxiety, low self-esteem, and emotional isolation among students.</p>
+
+    <h3 style="margin-top:20px;">What should parents and teachers do?</h3>
+    <p>Parents and educators should encourage open communication, monitor harmful behavior, and guide students toward responsible digital practices.</p>
+
+    <h3 style="margin-top:20px;">Are cyberbullying cases punishable in India?</h3>
+    <p>Yes. Several provisions under the Information Technology Act and Indian legal framework can be applied against online harassment and digital abuse.</p>
+  </div>
+</section>
+
+<div class="partner-section-title">
+  <h2>Our National Partners Supporting Cyber Safety & Digital Awareness</h2>
+  <p>
+    Collaborating with trusted Indian government organizations and cyber security initiatives
+    to reduce cyberbullying, promote ethical digital behavior, and ensure safer online spaces
+    for students across India.
+  </p>
+</div>
+
+<div class="gov-marquee">
+  <div class="gov-track">
+    <a href="https://www.india.gov.in" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/5/55/Emblem_of_India.svg"></a>
+    <a href="https://www.telangana.gov.in/" target="_blank"><img src="https://duckduckgo.com/i/0becea87df8d614c.png"></a>
+    <a href="https://cybercrime.gov.in" target="_blank"><img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%2Fid%2FOIP.zm99wM1szl6KDdULnAk8OwHaDo%3Fpid%3DApi&f=1&ipt=7ad5e6b7894b8b4a2347dafc3805f85f23343e013aea5fc07b60afc4133e46bc&ipo=images"></a>
+    <a href="https://www.meity.gov.in" target="_blank"><img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.mygov.in%2Fstatic%2Fs3fs-public%2Fstyles%2Flarge-image%2Fpublic%2Fmeity_1700469820.jpg&f=1&nofb=1&ipt=ff277a7db39b47a4f5f6cbac93fee322b2546ed3c25f67afdb2e898d270283cd"></a>
+    <a href="https://maharashtra.gov.in/" target="_blank"><img src="https://duckduckgo.com/i/e09886b10ea6052c.png"></a>
+    <a href="https://www.digitalindia.gov.in" target="_blank"><img src="https://www.digitalindia.gov.in/wp-content/themes/di-child/assets/images/digital-india.svg"></a>
+    <a href="https://www.csk.gov.in/" target="_blank"><img src="https://www.csk.gov.in/image/logo/certlogo.png"></a>
+    <a href="https://jansuraksha.in/pmsbyScheme" target="_blank"><img src="https://jansuraksha.in/assets/images/JS-logo.svg"></a>
+    <a href="https://www.nciipc.gov.in/" target="_blank"><img src="https://www.nciipc.gov.in/images/logo.png"></a>
+    <a href="https://www.cyberlawsindia.net/" target="_blank"><img src="https://cyberlawsindia.net/cyberlaws/logo.jpg"></a>
+    <a href="https://delhi.gov.in/" target="_blank"><img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%2Fid%2FOIP.qv0OCIk37imW4FjZetg6AQHaFM%3Fpid%3DApi&f=1&ipt=057ba041ad8a345b6b9ee0a1d737e63984e11d0676fb6b1469f8654f8d7027e0&ipo=images"></a>
+    <a href="https://www.ssa.gov/" target="_blank"><img src="https://www.ssa.gov/themes/custom/ssa_core/logo.svg"></a>
+    <a href="https://eshram.gov.in/social-security-welfare-schemes" target="_blank"><img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Femii.edu.in%2Fassets%2Fimg%2Fbrand%2Fministryoflabour.png&f=1&nofb=1&ipt=4b6396df7cc0776e4139b7ab5f37cdacc1647b34e9fca3478794f5b8f1b9bd5d"></a>
+    <a href="https://www.mha.gov.in/" target="_blank"><img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%2Fid%2FOIP.gQxK1UVlsYbRi_poZtGbgAHaC6%3Fpid%3DApi&f=1&ipt=078dfce3e425920569c4ee05d81204dff34f5b54050b13f4ae6940c1d366a151&ipo=images"></a>
+    <a href="https://karnataka.gov.in/index.php/department/en" target="_blank"><img src="https://karnataka.gov.in/frontend/assets/img/Seal_of_Karnataka.png"></a>
+    <a href="https://www.unesco.org/en" target="_blank"><img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%2Fid%2FOIP.yCCWLOB5tLAq1JO3CsD3zAHaHJ%3Fpid%3DApi&f=1&ipt=8802d085dbfff9cdf85cbcc559aa6b1812cf06f0fe4566a4b5b05cbf18bcdc91&ipo=images"></a>
+  </div>
+</div>
+
+<div class="visitor-counter">
+  Visitors Viewed This Portal:
+  <span id="visitorCount">0</span>
+</div>
+
+<div class="floating-chatbot" id="chatWidget">
+
+  <div class="chat-header">
+    <span>CyberShield Assistant</span>
+
+    <div class="chat-controls">
+      <button onclick="toggleChat()">—</button>
+      <button onclick="closeChat()">✕</button>
+    </div>
+  </div>
+
+  <div class="chat-body" id="chatBody">
+
+  <div class="chat-messages" id="chatMessages">
+
+  <div class="bot-message">
+    Hello! I am CyberShield Assistant. How can I help you today?
+  </div>
+
+  <div class="user-message">
+    Someone is sharing edited memes about my friend in our college group.
+  </div>
+
+  <div class="bot-message">
+    I'm sorry to hear that. Sharing humiliating or abusive memes can be considered cyberbullying.
+  </div>
+
+  <div class="user-message">
+    What should we do now?
+  </div>
+
+  <div class="bot-message">
+    You should avoid forwarding the content, preserve screenshots as evidence,
+    and report the incident through the Anonymous Reporting Portal.
+  </div>
+
+  <div class="user-message">
+    Is there any helpline available in India?
+  </div>
+
+  <div class="bot-message">
+    Yes. National Cyber Crime Helpline: 1930 <br>
+    Childline India: 1098
+  </div>
+
+  <div class="user-message">
+    Thank you.
+  </div>
+
+  <div class="bot-message">
+    You're welcome. Remember — ethical digital behavior and respectful communication
+    help create safer online communities.
+  </div>
+
+</div>
+
+    <div class="chat-input-area">
+      <input
+        type="text"
+        id="chatInput"
+        placeholder="Ask something..."
+        style="display:block;"
+      />
+
+      <button onclick="sendMessage()">Send</button>
+    </div>
+
+  </div>
+</div>
+
+<button class="chat-open-btn" id="chatOpenBtn" onclick="openChat()">
+  💬
+</button>
+
+<footer>
+  <p>
+    CyberShield INDIA © 2026 | All rights reserved | Developed by Vishal V P
+  </p>
+</footer>
+
+<script>
+  function toggleTheme() {
+    document.body.classList.toggle('dark-mode');
+  }
+
+  function changeFontSize(change) {
+    const current = parseFloat(getComputedStyle(document.body).fontSize);
+    document.body.style.fontSize = (current + change) + 'px';
+  }
+
+  function changeFontColor(color) {
+    document.body.style.color = color;
+  }
+
+  function toggleChat() {
+  const body = document.getElementById("chatBody");
+
+  if(body.style.display === "none") {
+    body.style.display = "block";
+  }
+  else {
+    body.style.display = "none";
+  }
+}
+
+function closeChat() {
+  document.getElementById("chatWidget").style.display = "none";
+  document.getElementById("chatOpenBtn").style.display = "block";
+}
+
+function openChat() {
+  document.getElementById("chatWidget").style.display = "block";
+  document.getElementById("chatOpenBtn").style.display = "none";
+}
+
+  const mediaSlides = [
+  {
+    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop",
+    caption: "Students learning responsible digital communication practices."
+  },
+
+  {
+    image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fc.ndtvimg.com%2F2024-05%2F43at22o8_hacker-generic-cybercrime-generic-cyber-scam-generic_625x300_12_May_24.jpeg%3Fim%3DFeatureCrop%2Calgorithm%3Ddnn%2Cwidth%3D773%2Cheight%3D435&f=1&nofb=1&ipt=f0b89ad5756b7973f88f1cf5fa538df7e19d7b29fa43339562dd4f8dd22762c4",
+    caption: "25 Linked to 453 Cyber Fraud Cases Arrested in Hyderabad, Crores Recovered"
+  },
+
+  {
+    image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop",
+    caption: "Awareness sessions helping youth understand cyber ethics."
+  },
+
+  {
+    image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.toiimg.com%2Fthumb%2Fmsid-111109851%2Cwidth-1070%2Cheight-580%2Cimgsize-75462%2Cresizemode-75%2Coverlay-toi_sw%2Cpt-32%2Cy_pad-40%2Fphoto.jpg&f=1&nofb=1&ipt=202d3378fe0c439873422a63a26d1d72afd9406ef66dcebe8faab72b959c447b",
+    caption: "How to report cyber crime and fraud in India?"
+  },
+
+  {
+    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1200&auto=format&fit=crop",
+    caption: "Educational initiatives promoting safe online interaction."
+  },
+
+  {
+    image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1200&auto=format&fit=crop",
+    caption: "Students engaging in cyber safety workshops and discussions."
+  },
+
+  {
+    image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fblogit.lab.fi%2Flabfocus%2Fwp-content%2Fuploads%2Fsites%2F8%2F2024%2F06%2F504_2024_The-hackathon-concept-and-its-use-to-all-fields.jpg&f=1&nofb=1&ipt=830b8dc128d7f12e55fa08fe475b59adec9ff2cc894e19bc8404ab94b9220bf3",
+    caption: "Students collaborating in cyber safety awareness programs."
+  },
+
+  {
+    image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fturntable.kagiso.io%2Fimages%2FChild_safety_iStock.width-800.jpg&f=1&nofb=1&ipt=3a612628f9ba638e3999c2e86b43cd2a19e08ae3ca6223ccbd0d842793f9dede",
+    caption: "Tips for child safety as the school year kicks off"
+  },
+
+  {
+    image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.cheggindia.com%2Fwp-content%2Fuploads%2F2023%2F10%2Fpocso-full-form-1024x543.png&f=1&nofb=1&ipt=b230dd80fd313ac6520aafd33cf103368ba2603c87554dc8c30f5eb3f62492ca",
+    caption: "Protection of Childern from Sexual Offences"
+  },
+
+  {
+    image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.smart-academy.in%2Fwp-content%2Fuploads%2F2024%2F03%2FBLOG-Image-Cybersecurity-Awareness.jpg&f=1&nofb=1&ipt=9ffb9e16bb5968eb55784ae805b91351ce486edfe2e4eb846567e5a3abd2383f",
+    caption: "Why it Matters and How to Stay Safe"
+  },
+
+  {
+    image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fthumbs.dreamstime.com%2Fz%2Fnational-cyber-security-awareness-month-observed-every-october-national-cyber-security-awareness-month-observed-every-291117475.jpg&f=1&nofb=1&ipt=62743e45c79d24dab25033d5889aa83099d6f109c382c8d1f4d95e380dc85d22",
+    caption: "National Cyber Security Awareness Month Observed on Every October"
+  },
+
+  {
+    image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.utkarsh.com%2Fpublic%2Fuploads%2Fblog%2F2025%2F01%2Fc5c2f04e-b4c5-4a93-9542-ed9c93afc7bf-1737616162.webp&f=1&nofb=1&ipt=2cd456c1e08d67712594842ae4784bb8afcff5062cb9e7d518cad21e65c34a21",
+    caption: "Beti Bachao Beti Padhao Marks 10th Anniversary"
+  },
+
+  {
+    image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.cry.org%2Fwp-content%2Fuploads%2F1200x1200-5-min_11zon.webp&f=1&nofb=1&ipt=1f4446fbc8409737ebf4a9d7d7eb057c976a5f28373bf736ad51a410906e6d2f",
+    caption: "Protection of Child Rights Act"
+  },
+
+  {
+    image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fthfvnext.bing.com%2Fth%2Fid%2FOIP.gCOGO1GKzABz5RovMyZIugHaC-%3Fcb%3Dthfvnextfalcon%26pid%3DApi&f=1&ipt=e11ee8806d33526ff9f3bfdfa7976ca5ffd044dc4ef34ea9e1b4244e672eb176q",
+    caption: "POCSO Act Insufficient, Sexual Abuse of Children Rampant"
+  },
+
+  {
+    image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.hindustantimes.com%2Fimg%2F2021%2F09%2F15%2Foriginal%2FCyber_crime_1631741983309.png&f=1&nofb=1&ipt=e08c9c328003b61f840e0e0c8dd93c83d86825a2607b3feccc0d19324d59fccf",
+    caption: "Cybercrime Cases in India: A Rising Concern"
+  },
+
+  {
+    image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.sarvothanam.com%2Fassets%2Fimg%2Fwinning%2Fone.webp&f=1&nofb=1&ipt=e08cb06c046e55a8779d6dac20e403f1d6c7907f108a2d12353823889eccb6a3",
+    caption: "Sarvothanam Cyber Security NGO in India for Youth Awareness"
+  },
+
+  {
+    image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fresize.indiatvnews.com%2Fen%2Fresize%2Fnewbucket%2F1200_-%2F2022%2F05%2Fmodi-kids-1653142896.jpg&f=1&nofb=1&ipt=422b941a1bfbf64c5f4080598a29973cc07da6543dc7e0b29283c5c9c84bdd26",
+    caption: "5 times when PM Modi's infinite love for kids won hearts"
+  },
+
+  {
+    image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%2Fid%2FOIP.eJLYDihWxaA-6Ldq-aLEcwHaE8%3Fr%3D0%26pid%3DApi&f=1&ipt=4d06ce75f8b075395a45d0188e21d7fc008e511c947601e94f93cea5ecd89cc2&ipo=images",
+    caption: "Stop receiving suspicious calls from unknown numbers"
+  },
+
+  {
+    image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fthfvnext.bing.com%2Fth%2Fid%2FOIP.QfFB5wlHtUrG4Mxkds0RYgHaDm%3Fr%3D0%26cb%3Dthfvnextfalcon%26pid%3DApi&f=1&ipt=80df714540b51a2ce9c487491fe8f8c45c0c195dfbb70aa3644bffca3365d25e&ipo=images",
+    caption: "Dealing with abusive text messages"
+  },
+
+  {
+    image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%2Fid%2FOIP.K3i-HnZm5cofue_oX0n5zwHaEM%3Fr%3D0%26pid%3DApi&f=1&ipt=d308a520a498e2eb168fb22586bec9e2b722ade861c8e340992043edbdbe74a4&ipo=images",
+    caption: "Go against stress and anxiety"
+  },
+
+  {
+    image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fthfvnext.bing.com%2Fth%2Fid%2FOIP.3UYH2rV6XXxm7S5G3I9XFwHaEK%3Fr%3D0%26cb%3Dthfvnextfalcon%26pid%3DApi&f=1&ipt=b9ff63effadddcdeb7d8ed363a68916f8f10f9faa095d83acfa9a4be67cacd1b&ipo=images",
+    caption: "Indian police join hands against Cyberbullying"
+  },
+
+  {
+    image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fthf.bing.com%2Fth%2Fid%2FOIP.Q1MerOs_80F-GDJFS6CYqAHaHa%3Fr%3D0%26cb%3Dthfc1falcon%26pid%3DApi&f=1&ipt=fab2d83a553b17353bb2cb19690dd3e73efcbc4f15a6bed58cda2074b2bcecb3&ipo=images",
+    caption: "Lead a better life for yourself and your loved-ones"
+  },
+
+  {
+    image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%2Fid%2FOIP.UPJIOLgyWv0Qxw0PRpoUpQHaEy%3Fpid%3DApi&f=1&ipt=696bad7e96e77f14ad3dd8c91190e3578f113f49949b87c8add7d2d65bc67253&ipo=images",
+    caption: "Need help, reach out to your nearest Cybercrime facilities"
+  },
+
+  {
+    image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.nepallawyer.com%2Fstorage%2Fphotos%2Fshares%2FStep-by-Step%2520Procedure%2520for%2520Filing%2520Cybercrime%2520Complaints.jpg&f=1&nofb=1&ipt=91a9d4f5444621954445f0527dbec331508400df2e8a4a14da9ae6d409a8d817",
+    caption: "How to file Cybercrime Complaints online?"
+  }
+];
+
+let currentSlide = 0;
+
+const sliderImage = document.getElementById("sliderImage");
+const mediaCaption = document.getElementById("mediaCaption");
+
+function showSlide(index) {
+  sliderImage.style.opacity = 0;
+
+  setTimeout(() => {
+    sliderImage.src = mediaSlides[index].image;
+    mediaCaption.innerText = mediaSlides[index].caption;
+    sliderImage.style.opacity = 1;
+  }, 200);
+}
+
+function nextSlide() {
+  currentSlide = (currentSlide + 1) % mediaSlides.length;
+  showSlide(currentSlide);
+}
+
+function prevSlide() {
+  currentSlide =
+    (currentSlide - 1 + mediaSlides.length) % mediaSlides.length;
+  showSlide(currentSlide);
+}
+
+setInterval(nextSlide, 5000);
+
+  let speech;
+
+  function playReader() {
+    const text = document.body.innerText;
+
+    speech = new SpeechSynthesisUtterance(text);
+    speech.rate = 1;
+    speech.pitch = 1;
+
+    speechSynthesis.cancel();
+    speechSynthesis.speak(speech);
+  }
+
+  function pauseReader() {
+    speechSynthesis.pause();
+  }
+
+  function toggleDetectorInput() {
+    const elements = document.querySelectorAll('#detector textarea');
+    elements.forEach(el => {
+      el.style.display = el.style.display === 'block' ? 'none' : 'block';
+    });
+  }
+
+  function toggleReportInput() {
+    const elements = document.querySelectorAll('#report textarea, #report input');
+    elements.forEach(el => {
+      el.style.display = el.style.display === 'block' ? 'none' : 'block';
+    });
+  }
+
+  function submitEnquiry() {
+    document.getElementById('enquiryResult').innerHTML = 'Anonymous enquiry submitted successfully.';
+  }
+
+  function analyzeMessage() {
+    const input = document.getElementById('messageInput').value.toLowerCase();
+    const result = document.getElementById('analysisResult');
+
+    const harmfulWords = [
+      'hate',
+      'ugly',
+      'stupid',
+      'loser',
+      'idiot',
+      'nobody likes you',
+      'leave the group'
+    ];
+
+    let toxicity = 0;
+
+    harmfulWords.forEach(word => {
+      if(input.includes(word)) {
+        toxicity++;
+      }
+    });
+
+    if(toxicity >= 2) {
+      result.innerHTML = '⚠ High Toxicity Detected. This message may promote cyberbullying.';
+      result.style.color = 'red';
+    }
+    else if(toxicity === 1) {
+      result.innerHTML = '⚠ Mild Toxicity Detected. Consider using respectful language.';
+      result.style.color = 'orange';
+    }
+    else {
+      result.innerHTML = 'No harmful content detected.';
+      result.style.color = 'green';
+    }
+  }
+
+  function submitReport() {
+    document.getElementById('reportResult').innerHTML =
+      'Anonymous report submitted successfully.';
+  }
+
+  function calculateQuiz() {
+    let score = 0;
+
+    if(document.getElementById('q1').value === 'correct') score++;
+    if(document.getElementById('q2').value === 'correct') score++;
+    if(document.getElementById('q3').value === 'correct') score++;
+
+    document.getElementById('quizResult').innerHTML =
+      'Your Score: ' + score + '/3';
+  }
+
+  const ctx = document.getElementById('statsChart');
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: [
+        'Social Media Usage',
+        'Online Harassment',
+        'Awareness Programs',
+        'Reported Cases'
+      ],
+      datasets: [{
+        label: 'Percentage',
+        data: [72, 41, 58, 33],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100
+        }
+      }
+    }
+  });
+
+  // CHATBOT
+
+function sendMessage() {
+  const input = document.getElementById("chatInput");
+  const messages = document.getElementById("chatMessages");
+
+  const userText = input.value.trim();
+
+  if(userText === "") return;
+
+  const userDiv = document.createElement("div");
+  userDiv.className = "user-message";
+  userDiv.innerText = userText;
+
+  messages.appendChild(userDiv);
+
+  let reply =
+    "Please practice safe and respectful digital communication.";
+
+  const text = userText.toLowerCase();
+
+  if(text.includes("cyberbullying")) {
+    reply =
+      "Cyberbullying refers to online harassment using digital platforms.";
+  }
+
+  else if(text.includes("report")) {
+    reply =
+      "You can use the Anonymous Reporting Portal available on this website.";
+  }
+
+  else if(text.includes("helpline")) {
+    reply =
+      "National Cyber Crime Helpline: 1930 | Childline: 1098";
+  }
+
+  else if(text.includes("ahimsa")) {
+    reply =
+      "Ahimsa in Indian Knowledge Systems promotes non-violence and respectful behavior.";
+  }
+
+  else if(text.includes("safe")) {
+    reply =
+      "Avoid sharing personal information and report abusive online behavior.";
+  }
+
+  setTimeout(() => {
+    const botDiv = document.createElement("div");
+    botDiv.className = "bot-message";
+    botDiv.innerText = reply;
+
+    messages.appendChild(botDiv);
+
+    messages.scrollTop = messages.scrollHeight;
+  }, 500);
+
+  input.value = "";
+
+  messages.scrollTop = messages.scrollHeight;
+}
+
+let count = localStorage.getItem("visitorCount");
+
+if(!count) {
+  count = 1;
+}
+else {
+  count = parseInt(count) + 1;
+}
+
+localStorage.setItem("visitorCount", count);
+
+document.getElementById("visitorCount").innerText = count;
+
+const bubble = document.querySelector(".cursor-bubble");
+
+document.addEventListener("mousemove", (e) => {
+  bubble.style.left = e.clientX + "px";
+  bubble.style.top = e.clientY + "px";
+});
+</script>
+
+<script>
+  function enterPortal() {
+    document.getElementById('welcomeScreen').style.display = 'none';
+    document.getElementById('mainPortal').style.display = 'block';
+  }
+</script>
+
+<script>
+function toggleAccessMenu(){
+  const menu =  document.getElementById("accessMenu");
+
+  if(menu.style.display === "flex"){    menu.style.display = "none"; }
+  else{    menu.style.display = "flex";  }}
+</script>
+
+<style>
+  .accessibility-panel{
+    position: fixed; top: 20px; right: 20px; z-index: 3000; }
+
+  .menu-toggle{
+    background: #111827; color: white;
+    border: none; padding: 12px 18px;
+    border-radius: 10px; font-size: 1rem; cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+
+  .access-menu{
+    display: none; flex-direction: column;
+    gap: 10px; margin-top: 12px;
+    background: white;  padding: 18px;
+    border-radius: 15px;  width: 240px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.2); }
+
+  .access-menu button{
+    width: 100%;  text-align: left; }
+
+  .color-tools{
+    display: flex;  flex-wrap: wrap;
+    gap: 10px;  margin-top: 10px;}
+
+  .color-tools p{
+    width: 100%;  font-weight: bold;
+    margin-bottom: 5px; }
+
+  .color-tools button{
+    width: 28px;  height: 28px;
+    border-radius: 50%;
+    border: none;  cursor: pointer; }
+
+  @media (max-width: 1024px) {
+    header h1 {
+      font-size: 2.4rem;
+    }
+
+    section {
+      padding: 40px 6%;
+    }
+
+    nav a {
+      display: inline-block;
+      margin: 10px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    header {
+      padding: 30px 15px;
+    }
+
+    header h1 {
+      font-size: 2rem;
+    }
+
+    .hero-stats {
+      grid-template-columns: 1fr;
+    }
+
+    .ethics-grid {
+      grid-template-columns: 1fr;
+    }
+
+    nav {
+      padding: 15px 5px;
+    }
+
+    nav a {
+      display: block;
+      margin: 12px 0;
+    }
+
+    section {
+      padding: 35px 5%;
+    }
+
+    button {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 480px) {
+    #welcomeScreen h1 {
+      font-size: 2.2rem !important;
+    }
+
+    #welcomeScreen p {
+      font-size: 1rem !important;
+    }
+
+    .card {
+      padding: 18px;
+    }
+  }
+</style>
+
+</div>
+</body>
+</html>
